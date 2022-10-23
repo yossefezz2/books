@@ -42,3 +42,4 @@ export default {
 <style>
 @import '../../assets/css/home.css';
 </style>
+

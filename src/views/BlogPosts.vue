@@ -1,23 +1,25 @@
 <template>
     <div>
-        <div class="grid-container" >
+        <div class="grid-container">
             <div class="grid-item" v-for="post in posts" :key="post.id" id="my-table" :per-page="perPage"
-                :current-page="currentPage" >
-                <div class="flex2" >
-                    <img :src="post.formats['image/jpeg']" alt="img not found" class="smallimg" id="my-table2" />
-                    <div class="flex5 ">
-                        <div class="star">
-                            <b-icon icon="star-fill" class="checked"></b-icon>
-                            <b-icon icon="star-fill" class="checked"></b-icon>
-                            <b-icon icon="star-fill" class="checked"></b-icon>
-                            <b-icon icon="star" class="unchecked"></b-icon>
-                            <b-icon icon="star" class="unchecked"></b-icon>
+                :current-page="currentPage">
+                <router-link :to="'/SinglePage/'+post.id">
+                    <div class="flex2">
+                        <img :src="post.formats['image/jpeg']" alt="img not found" class="smallimg" id="my-table2" />
+                        <div class="flex5 ">
+                            <div class="star">
+                                <b-icon icon="star-fill" class="checked"></b-icon>
+                                <b-icon icon="star-fill" class="checked"></b-icon>
+                                <b-icon icon="star-fill" class="checked"></b-icon>
+                                <b-icon icon="star" class="unchecked"></b-icon>
+                                <b-icon icon="star" class="unchecked"></b-icon>
+                            </div>
+                            <span class="kalamcard start">{{post.title}}</span>
+                            <p v-if="post.authors[0]" class="kalamnono start">{{post.authors[0].name}}</p>
+                            <p v-else class="kalamnono start" style="color: red;">none of author</p>
                         </div>
-                        <span class="kalamcard start">{{post.title}}</span>
-                        <p v-if="post.authors[0]" class="kalamnono start">{{post.authors[0].name}}</p>
-                        <p v-else class="kalamnono start" style="color: red;">none of author</p>
                     </div>
-                </div>
+                </router-link>
             </div>
         </div>
         <div class="mt-3" @click="navAction">
@@ -41,6 +43,7 @@ export default {
             currentPage: 1,
             perPage: 32,
             rows: 0,
+            id1: 0,
         };
     },
     methods: {
@@ -59,7 +62,7 @@ export default {
             this.getUsers(this.currentPage).then((data1) => {
                 this.posts = data1.results;
             });
-        }
+        },
     },
 
 
@@ -78,4 +81,16 @@ export default {
 
 <style>
 @import "../assets/css/home.css";
+</style>
+<style lang="scss">
+.grid-item {
+    a {
+        color: black;
+        text-decoration: none;
+
+        &:hover {
+            color: black;
+        }
+    }
+}
 </style>

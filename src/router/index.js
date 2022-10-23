@@ -5,6 +5,7 @@ import HomeView from '../views/HomeView.vue'
 import HelpUs from '../views/HelpUS.vue'
 import aboutView from '../views/AboutView.vue'
 import BlogPosts from '../views/BlogPosts.vue'
+import SinglePage from '../views/SinglePage.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -31,6 +32,11 @@ const routes = [
     path:'/BlogPosts',
     name:'BlogPosts',
     component:BlogPosts,
+  },
+  {
+    path:'/SinglePage/:id',
+    name:'SinglePage',
+    component:SinglePage,
   },
 ]
 
